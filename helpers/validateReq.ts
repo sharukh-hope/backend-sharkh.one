@@ -7,7 +7,7 @@
 *
 */
 import express from "express";
-import type { typeValidationRules } from "../types/validationRules.ts";
+import type { typeValidationRules } from "../types/validationRules";
 
 export const validateReq = (
   req: express.Request,

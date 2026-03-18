@@ -12,7 +12,7 @@
 // ============================================
 
 import express from "express";
-import { nodeEnv } from "../config.ts";
+import { nodeEnv } from "../config";
 
 export interface AppError extends Error {
   status?: number;
