@@ -1,6 +1,6 @@
 // ============================================
 // CHAT ROUTES
-// Defines the API endpoints for the chat feature.
+// Defines the API endpoinjs for the chat feature.
 //
 // INTERVIEW CONCEPT: Express Router
 // Router is a mini Express app that handles a
@@ -20,11 +20,11 @@
 // ============================================
 
 import express, { Router } from "express";
-import { createError, errorHandler } from "../middleware/errorHandler.ts";
-import { rateLimiter } from "../middleware/rateLimiter.ts";
-import { validateReq } from "../helpers/validateReq.ts";
-import type { typeValidationRules } from "../types/validationRules.ts";
-import { chatController } from "../controllers/chat.controller.ts";
+import { createError, errorHandler } from "../middleware/errorHandler.js";
+import { rateLimiter } from "../middleware/rateLimiter.js";
+import { validateReq } from "../helpers/validateReq.js";
+import type { typeValidationRules } from "../types/validationRules.js";
+import { chatController } from "../controllers/chat.controller.js";
 
 const router = Router();
 

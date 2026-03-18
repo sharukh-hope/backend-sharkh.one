@@ -1,7 +1,7 @@
 // index.js
 import express from "express";
-import { port } from "./config.ts";
-import chatRoutes from "./routes/chats.routes.ts";
+import { port } from "./config.js";
+import chatRoutes from "./routes/chats.routes.js";
 import cors from "cors";
 
 const app = express();
