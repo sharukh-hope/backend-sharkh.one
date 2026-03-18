@@ -22,6 +22,9 @@
 import express, { Router } from "express";
 import { createError, errorHandler } from "../middleware/errorHandler.ts";
 import { rateLimiter } from "../middleware/rateLimiter.ts";
+import { validateReq } from "../helpers/validateReq.ts";
+import type { typeValidationRules } from "../types/validationRules.ts";
+import { chatController } from "../controllers/chat.controller.ts";
 
 const router = Router();
 
@@ -33,23 +36,26 @@ router.post(
   errorHandler,
   rateLimiter,
   (req: express.Request, res: express.Response) => {
-    const { message } = req.body;
-    console.log(message);
+    const validationRules: typeValidationRules = {
+      message: ["required"],
+      history: ["required"],
+    };
+    if (!validateReq(req, res, validationRules)) return;
 
-    // res.json({ message });
-    try {
-      return res.send({ msg: `This is the message you sent ${message}` });
-    } catch (err) {
-      throw createError(300, "The error message");
-    }
+    const { message, history } = req.body;
+
+    // return res.send({ aiRes: "Hello there! This is a dummy response" }); //simulation
+
+    chatController(message, history)
+      .then((response) => {
+        // console.log("Response was recorded", response);
+        return res.send({ aiRes: response });
+      })
+      .catch((err) => createError(300, `The error message: ${err}`));
   },
-  // aiChatLimiter, // 1. Check rate limit first
-  // validateChatRequest, // 2. Validate the request body
-  // chatController, // 3. Process with AI and respond
 );
 
 // GET /api/health
 // Simple health check - no auth or validation needed
 // router.get("/health", healthController);
-
 export default router;

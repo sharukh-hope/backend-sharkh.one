@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@google/genai": "^1.43.0",
     "cors": "^2.8.6",
     "express": "^5.2.1"
   },
@@ -10,6 +11,7 @@
   "type": "module",
   "scripts": {
     "dev": "node --watch index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "build": "tsc"
   }
 }
