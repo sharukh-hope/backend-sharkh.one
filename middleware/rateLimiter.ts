@@ -1,11 +1,11 @@
 import express from "express";
 
 const requests = new Map();
-const requestLimit = 1;
+const requestLimit = 5;
 export const rateLimiter: express.RequestHandler = (req, res, next) => {
   const ipAddress = req.ip;
   const now = Date.now();
-  const timeLimit = requestLimit * 60 * 1000;
+  const timeLimit = 1 * 60 * 1000;
 
   if (!requests.has(ipAddress)) {
     requests.set(ipAddress, { count: 1, timestamp: Date.now() });
